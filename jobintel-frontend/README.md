@@ -1,338 +1,303 @@
-🧠 Job Intel — Smart Job & HR Platform
+# JobIntel — Frontend
 
-Job Intel هو تطبيق ويب تفاعلي يربط بين الباحثين عن عمل (Job Seekers / Employees) وبين مسؤولي التوظيف (HR Managers).
-يقدّم النظام لوحة تحكم لكل طرف، مع اختبارات تقييم، مقابلة فيديو، نظام إشعارات، وصفحات إعدادات، وتسجيل دخول مخصص حسب الدور.
+> React 19 single-page application for the JobIntel AI-powered recruitment platform.
 
-🚀 المميزات الأساسية
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite)](https://vite.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-06B6D4?logo=tailwindcss)](https://tailwindcss.com/)
+[![License](https://img.shields.io/badge/License-MIT-yellow)](../)
 
-🔒 نظام مصادقة Roles (HR / Job Seeker / Employee)
+## Table of Contents
 
-🧑‍💼 لوحة تحكم HR لإدارة الوظائف والمتقدمين
+- [Overview](#overview)
+- [Tech Stack](#tech-stack)
+- [Prerequisites](#prerequisites)
+- [Getting Started](#getting-started)
+- [Project Structure](#project-structure)
+- [Routing](#routing)
+- [Architecture](#architecture)
+- [Key Features](#key-features)
+- [Configuration](#configuration)
 
-👷‍♂️ لوحة تحكم موظف لتتبع الاختبارات والتقدّم
+---
 
-🎥 مقابلة فيديو تفاعلية عبر الكاميرا والمايك (مع عدّاد زمني وتخزين محلي)
+## Overview
 
-💾 حفظ تلقائي في LocalStorage
+JobIntel Frontend is a modern SPA built with React 19 and Vite 8. It serves two roles — **Job Seeker** and **Recruiter** — with role-specific dashboards, multi-step profile wizards, AI-powered assessments, and full English/Arabic bilingual support with RTL layout.
 
-🧩 Protected Routes عبر PrivateRoute و RoleRoute
+### Key Numbers
 
-🧠 Alerts و Toasters باستخدام SweetAlert2
+| Metric | Value |
+|--------|-------|
+| Page Components | 40 |
+| Shared Components | 22 |
+| API Service Modules | 9 |
+| Context Providers | 5 |
+| Route Guards | 5 |
+| Locales | 2 (English, Arabic) |
+| Source Files | 105 |
 
-🎨 تصميم حديث بـ TailwindCSS
+---
 
-🧭 تنظيم صفحات احترافي باستخدام React Router v6
+## Tech Stack
 
-🧱 مكونات قابلة لإعادة الاستخدام (Layouts, Hooks, Components)
+| Component | Technology | Version |
+|-----------|-----------|---------|
+| UI Library | React | 19.1.1 |
+| Build Tool | Vite | 8.0.16 |
+| Styling | Tailwind CSS | 3.4 |
+| Routing | React Router DOM | 7.9.4 |
+| HTTP Client | Axios | 1.13.5 |
+| i18n | i18next + react-i18next | 26.3.1 / 17.0.8 |
+| Charts | Recharts | 3.3.0 |
+| Icons | Lucide React, FontAwesome | 0.546 / 7.1 |
+| Auth | Google OAuth (`@react-oauth/google`) | 0.13.4 |
+| Alerts | SweetAlert2 | 11.26.3 |
+| Markdown | React Markdown | 10.1.0 |
 
-✨ **تحديثات واجهة المستخدم الأخيرة (UI/UX Updates v2.0):**
-- **إعادة تصميم صفحات المصادقة (Auth Pages):** 
-  - تم تحسين تصميم `Signup`, `Login`, و `ForgotPassword` لتتطابق تماماً مع تصاميم UI/UX المتقدمة.
-  - إضافة ميزة الشريط المضيء المتحرك المخصص (`ElectricBorder`) حول بطاقات إدخال البيانات.
-  - دعم التبديل الديناميكي الكامل بين الوضع العادي (Light) والمظلم (Dark) مع تخصيص الألوان (برتقالي وأزرق وبنفسجي) حسب نوع الحساب.
-  - دمج الأيقونات والتفاعلات الحركية (Hover effects) مثل الأسهم والظلال المتحركة.
-- **تحسينات إضافية:** إصلاح مشاكل الـ Responsive design لشعار الموقع، وضبط حقول كلمة المرور (إظهار/إخفاء).
+---
 
-🛠️ التقنيات المستخدمة
-الفئة	التقنية / المكتبة	الإصدار
-⚛️ Framework	React	18.2.0
-🔄 Routing	react-router-dom	6.23.0
-🎨 CSS Framework	Tailwind CSS	3.4.1
-🧾 Alerts	SweetAlert2	11.10.0
-📦 Build Tool	Vite	5.1.0
-🧠 Icons / UI	Lucide React (optional)	latest
-🧩 State Mgmt	React Context (AuthProvider)	—
-💽 Storage	LocalStorage (client-side)	—
-🎥 Video API	MediaRecorder + getUserMedia	Web API
-🧰 Development	Node.js	≥ 18.0.0
-🧰 Package Manager	npm / yarn / pnpm	latest
-🧩 هيكل المشروع
-│   App.css
-│   App.jsx
-│   index.css
-│   main.jsx
-│   
-├───api
-│       authService.js
-│       axios.js
-│
-├───auth
-│       AuthProvider.jsx
-│
-├───Components
-│   │   ElectricBorder.jsx
-│   │   FullScreenLoader.jsx
-│   │   LogoIcon.jsx
-│   │   Navbar.jsx
-│   │   ProfileSetupLayout.jsx
-│   │   ProfileSetupNavbar.jsx
-│   │   ProfileSidebarStepper.jsx
-│   │   Robot404Icon.jsx
-│   │   ThemeToggle.jsx
-│   │   ThemeToggleDropdown.jsx
-│   │   TrendBarChart.jsx
-│   │
-│   └───ui
-│           chart.jsx
-│
-├───context
-│       AuthContext.jsx
-│
-├───hooks
-│       useConfirmLogout.js
-│
-├───layout
-│   │   AuthLayout.jsx
-│   │
-│   ├───employee
-│   │       EmployeeLayout.jsx
-│   │       Sidebar.jsx
-│   │       Topbar.jsx
-│   │
-│   └───hr
-│           HRLayout.jsx
-│           HRSidebar.jsx
-│           Topbar.jsx
-│
-├───lib
-│       alerts.js
-│       utils.js
-│
-├───loader
-│       LoaderProvider.jsx
-│
-├───pages
-│   │   About.jsx
-│   │   ContactUs.jsx
-│   │   Faqs.jsx
-│   │   HelpCenter.jsx
-│   │   Home.jsx
-│   │   Login.jsx
-│   │   NotFound.jsx
-│   │   Privacy.jsx
-│   │   Signup.jsx
-│   │
-│   ├───auth
-│   │       ForgotPassword.jsx
-│   │       ResetPassword.jsx
-│   │       VerifyEmail.jsx
-│   │
-│   ├───employee
-│   │       Dashboard.jsx
-│   │       Jobs.jsx
-│   │       Notifications.jsx
-│   │       Profile.jsx
-│   │       Settings.jsx
-│   │       Tests.jsx
-│   │       VideoInterview.jsx
-│   │
-│   ├───hr
-│   │       HRCandidates.jsx
-│   │       HRDashboard.jsx
-│   │       HRJobs.jsx
-│   │       HRNotifications.jsx
-│   │       HRSettings.jsx
-│   │
-│   └───step-profile
-│           Step-1.jsx
-│           Step-2.jsx
-│           Step-3.jsx
-│
-├───routes
-│       PrivateRoute.jsx
-│       RoleRoute.jsx
-│
-├───styles
-│       globals.css
-│
-├───theme
-│       theme.css
-│       ThemeProvider.jsx
-│
-└───utils
-        extractError.js
-⚙️ الإعداد المحلي (Local Setup)
-1️⃣ المتطلبات
+## Prerequisites
 
-Node.js ≥ 18
+- [Node.js](https://nodejs.org/) v18+ (v20+ recommended)
+- [npm](https://www.npmjs.com/) v9+
+- Backend API running at `https://jobintel-app.runasp.net/api` (or your own instance)
 
-npm ≥ 9
+---
 
-متصفح يدعم MediaRecorder (Chrome / Edge / Firefox)
+## Getting Started
 
-2️⃣ تثبيت الحزم
+```bash
+# Clone the repository
+git clone https://github.com/your-org/jobintel.git
+cd jobintel/frontend
+
+# Install dependencies
 npm install
-# أو
-yarn install
 
-3️⃣ تشغيل المشروع
+# Start development server
 npm run dev
-# أو
-yarn dev
 
-
-ثم افتح:
-
-http://localhost:5173/
-
-🔐 نظام المصادقة (Authentication System)
-
-المستخدم يحدد الدور (HR أو Job-Seeker) أثناء تسجيل الدخول
-
-يتم حفظ الجلسة في AuthContext
-
-PrivateRoute تمنع الوصول لصفحات محمية بدون تسجيل
-
-RoleRoute تمنع المستخدم من فتح لوحات تخص دور آخر
-
-📸 مقابلة الفيديو (Video Interview)
-
-المسار: /employee/interview
-
-تسجيل إجابة فيديو لكل سؤال باستخدام الكاميرا
-
-حد زمني افتراضي لكل سؤال (120 ثانية)
-
-لا يمكن تسليم المقابلة إلا بعد تسجيل 3 فيديوهات على الأقل
-
-بعد التسليم يتم القفل (localStorage["vi_locked"]=1)
-
-يمكن إعادة التسجيل مرة واحدة لكل سؤال
-
-🧠 التكامل مع الذكاء الاصطناعي (AI Evaluation)
-
-قابل للتفعيل لاحقًا:
-
-رفع الفيديو إلى الخادم
-
-تحليل الصوت عبر Whisper ASR
-
-تحليل النص عبر GPT-4 أو GPT-5
-
-استخراج تقييم من 100 + ملاحظات
-
-عرض النتيجة في واجهة المستخدم
-
-🌐 الخدمات والروابط الخارجية
-الخدمة	الاستخدام
-SweetAlert2	تنبيهات و Toasts
-Google OAuth	تسجيل دخول اجتماعي (مستقبلي)
-Whisper (OpenAI)	تحويل الصوت إلى نص
-Cloudinary / AWS S3	تخزين الفيديوهات
-Tailwind CDN	تصميم سريع أثناء التطوير
-🎨 التصميم (UI/UX)
-
-TailwindCSS في كل الصفحات
-
-دعم النمط الفاتح والداكن
-
-مكونات رئيسية:
-
-Buttons (primary / ghost / secondary)
-
-Cards متجاوبة
-
-Sidebar ثابت
-
-Topbar بالاسم والصورة
-
-Toasts و Alerts موحدة من lib/alerts.js
-
-🧪 الاختبارات (Testing)
-
-تم اختبار:
-
-التوجيهات (Routing)
-
-تسجيل الدخول والخروج
-
-المقابلة بالفيديو
-
-الحماية (PrivateRoute + RoleRoute)
-
-📦 البناء والنشر
+# Build for production
 npm run build
 
+# Preview production build
+npm run preview
+```
 
-المخرجات في /dist ويمكن نشرها على:
+The dev server runs at `http://localhost:5173` by default.
 
-Netlify
+### Available Scripts
 
-Vercel
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Start Vite dev server with HMR |
+| `npm run build` | Production build to `dist/` |
+| `npm run preview` | Preview production build locally |
+| `npm run lint` | Run ESLint |
 
-GitHub Pages
+---
 
-أو أي سيرفر Node.js
+## Project Structure
 
-⚙️ إعداد Tailwind CSS
+```
+src/
+├── main.jsx                           # Entry point, provider nesting
+├── App.jsx                            # Route definitions + Suspense
+│
+├── api/                               # API service layer (9 modules)
+│   ├── axios.js                       # Axios instance, JWT interceptor, 401 handling
+│   ├── authService.js                 # Register, login, Google OAuth, password reset
+│   ├── wizardService.js               # Profile wizard CRUD + reference data caching
+│   ├── jobsService.js                 # Job CRUD, skill search
+│   ├── assessmentService.js           # Assessment lifecycle (start, answer, complete)
+│   ├── recruiterCandidateService.js   # Candidate matching, shortlisting, contact
+│   ├── recruiterDashboardService.js   # HR dashboard aggregation, company info
+│   ├── notificationService.js         # Notifications, unread count
+│   ├── settingsService.js             # Account settings, password, deactivation
+│   └── engagementService.js           # Job seeker engagement stats
+│
+├── context/                           # React Context providers
+│   ├── AuthContext.jsx                # JWT auth, localStorage, role mapping
+│   ├── PictureContext.jsx             # Profile picture state + cache-busting
+│   └── NotificationContext.jsx        # Polling (30s), unread count, mark read
+│
+├── hooks/                             # Custom hooks
+│   ├── useConfirmLogout.js            # SweetAlert2 logout confirmation
+│   └── useSessionStorage.js           # sessionStorage-backed state
+│
+├── Components/                        # Shared components (22 files)
+│   ├── Navbar.jsx                     # Public navigation
+│   ├── Modal.jsx                      # Reusable modal
+│   ├── SearchableSelect.jsx           # Filterable dropdown
+│   ├── ThemeToggle.jsx                # Light/dark/system toggle
+│   ├── ElectricBorder.jsx             # Animated glow effect
+│   ├── ProfileSidebarStepper.jsx      # Profile wizard progress
+│   ├── ProfileSetupLayout.jsx         # Wizard layout wrapper
+│   ├── TrendBarChart.jsx              # Recharts bar chart wrapper
+│   └── ui/                            # Primitive UI components
+│       ├── Card.jsx
+│       ├── EmptyState.jsx
+│       ├── ExpandableText.jsx
+│       ├── Pill.jsx
+│       ├── SectionCard.jsx
+│       ├── TabBar.jsx
+│       └── Timeline.jsx
+│
+├── layout/                            # Layout shells
+│   ├── employee/
+│   │   ├── EmployeeLayout.jsx         # Sidebar + Outlet
+│   │   └── Sidebar.jsx               # Employee navigation sidebar
+│   └── hr/
+│       ├── HRLayout.jsx               # Sidebar + Outlet
+│       └── HRSidebar.jsx             # HR navigation sidebar
+│
+├── pages/                             # Page components (40 files)
+│   ├── Home.jsx, About.jsx, Login.jsx, Signup.jsx, NotFound.jsx
+│   ├── auth/                          # VerifyEmail, ForgotPassword, ResetPassword
+│   ├── step-profile/                  # Job seeker onboarding (4 steps)
+│   ├── recruiter/                     # RecruiterSetup wizard
+│   ├── employee/                      # Job seeker dashboard (7 pages)
+│   │   └── assessment/                # Assessment subsystem (5 components, hooks, utils)
+│   └── hr/                            # Recruiter dashboard (6 pages)
+│
+├── routes/                            # Route guards (5 files)
+│   ├── PrivateRoute.jsx               # Auth required (Outlet)
+│   ├── RequireAuth.jsx                # Auth required (children)
+│   ├── RoleRoute.jsx                  # Role check
+│   ├── RequireWizardStep.jsx          # Job seeker step guard
+│   └── RequireRecruiterWizardStep.jsx # Recruiter step guard
+│
+├── loader/                            # Global loading overlay
+│   └── LoaderProvider.jsx
+│
+├── theme/                             # Theming system
+│   ├── ThemeProvider.jsx              # Light/dark/system, Tailwind class
+│   └── theme.css                      # CSS variables for themes
+│
+├── styles/                            # Global CSS
+│   ├── globals.css                    # Tailwind directives, RTL, animations
+│   ├── FullScreenLoader.css
+│   └── SciFiScanner.css
+│
+├── lib/                               # Utilities
+│   ├── i18n.js                        # i18next setup + RTL toggle
+│   ├── alerts.js                      # SweetAlert2 wrappers
+│   ├── utils.js                       # cn() class merge helper
+│   └── locales/                       # en.json (61KB), ar.json (78KB)
+│
+└── utils/
+    └── extractError.js                # ASP.NET error extractor with i18n
+```
 
-الملفات:
+---
 
-tailwind.config.js
-postcss.config.js
-index.css
+## Routing
 
+### Public Routes (7)
 
-تثبيت Tailwind:
+| Path | Component | Description |
+|------|-----------|-------------|
+| `/` | Home | Landing page |
+| `/about` | About | About page |
+| `/login` | Login | Email/password login |
+| `/signup` | Signup | Registration |
+| `/verify-email` | VerifyEmail | Email verification |
+| `/forgot-password` | ForgotPassword | Password reset request |
+| `/reset-password` | ResetPassword | Password reset form |
 
-npx tailwindcss init -p
+### Job Seeker Routes (8)
 
-🧑‍💻 المساهمون
-NOUR MOSTAFA --- Ui /Ux
-Yahia Mohamed — Frontend Developer & System Designer
-Nada Mohamed -- Frontend Developer & System Designer
+| Path | Component | Guard |
+|------|-----------|-------|
+| `/assessment-test` | AssessmentTest | RequireAuth |
+| `/employee` | Dashboard | RequireAuth + RoleRoute |
+| `/employee/profile` | Profile | RequireAuth + RoleRoute |
+| `/employee/tests` | Assessment | RequireAuth + RoleRoute |
+| `/employee/interview` | VideoInterview | RequireAuth + RoleRoute |
+| `/employee/jobs` | Jobs | RequireAuth + RoleRoute |
+| `/employee/notifications` | Notifications | RequireAuth + RoleRoute |
+| `/employee/settings` | Settings | RequireAuth + RoleRoute |
 
+### Recruiter Routes (6)
 
+| Path | Component | Guard |
+|------|-----------|-------|
+| `/hr` | HRDashboard | RequireAuth + RoleRoute |
+| `/hr/jobs` | HRJobs | RequireAuth + RoleRoute |
+| `/hr/candidates` | HRCandidates | RequireAuth + RoleRoute |
+| `/hr/candidates/:candidateId` | HRCandidateProfile | RequireAuth + RoleRoute |
+| `/hr/notifications` | HRNotifications | RequireAuth + RoleRoute |
+| `/hr/settings` | HRSettings | RequireAuth + RoleRoute |
 
-📡 التكامل المقترح مع Backend
-العنصر	الوصف
-API Server	Node.js + Express
-Database	MongoDB / PostgreSQL
-Auth	JWT / OAuth
-Video Upload	S3 / Cloudinary
-AI Pipeline	Whisper + GPT-4 Evaluation
-Endpoints	/api/interviews, /api/jobs, /api/users
-🔗 API Endpoints التفصيلية
-🧍 المستخدمين (Users)
-الطريقة	المسار	الوظيفة
-POST	/api/auth/signup	إنشاء حساب جديد
-POST	/api/auth/login	تسجيل الدخول وإرجاع JWT
-GET	/api/users/profile	جلب بيانات المستخدم الحالي
-PUT	/api/users/profile	تحديث بيانات المستخدم
-DELETE	/api/users/:id	حذف مستخدم
-💼 الوظائف (Jobs)
-الطريقة	المسار	الوظيفة
-GET	/api/jobs	جلب جميع الوظائف
-POST	/api/jobs	إضافة وظيفة جديدة (HR فقط)
-GET	/api/jobs/:id	جلب تفاصيل وظيفة معينة
-PUT	/api/jobs/:id	تعديل وظيفة
-DELETE	/api/jobs/:id	حذف وظيفة
-👤 المتقدمون (Candidates)
-الطريقة	المسار	الوظيفة
-GET	/api/candidates	جلب جميع المتقدمين
-POST	/api/candidates/apply	تقديم طلب لوظيفة
-GET	/api/candidates/:id	جلب تفاصيل متقدم
-DELETE	/api/candidates/:id	حذف متقدم
-🎥 المقابلات (Interviews)
-الطريقة	المسار	الوظيفة
-GET	/api/interviews	جلب جميع المقابلات
-POST	/api/interviews/start	بدء مقابلة جديدة
-POST	/api/interviews/submit	تسليم المقابلة النهائية
-GET	/api/interviews/:id	جلب تفاصيل مقابلة
-POST	/api/interviews/upload	رفع فيديو مقابلة
-POST	/api/interviews/evaluate	تقييم المقابلة عبر الذكاء الاصطناعي
+### Wizard Routes (6)
 
-نموذج تقييم AI (Response Example):
+| Path | Component | Guard |
+|------|-----------|-------|
+| `/step-0` through `/step-3` | Profile wizard steps | RequireAuth + RequireWizardStep |
+| `/recruiter-setup` | RecruiterSetup | RequireAuth + RequireRecruiterWizardStep |
 
-{
-  "overall_score": 84,
-  "clarity": 90,
-  "relevance": 80,
-  "communication": 83,
-  "feedback": "إجابات واضحة ومنظمة، حاول إضافة تفاصيل أكثر عن الخبرة التقنية."
-}
+---
 
-📄 الترخيص (License)
+## Architecture
 
-MIT License © 2026 Job Intel
-الاستخدام شخصي أو تعليمي فقط — النشر التجاري يتطلب إذن مسبق.
+### Provider Nesting
+
+```
+BrowserRouter
+└── GoogleOAuthProvider
+    └── AuthProvider              ← JWT auth, role mapping
+        └── PictureProvider       ← Profile picture state
+            └── NotificationProvider  ← 30s polling
+                └── LoaderProvider    ← Global loading overlay
+                    └── ThemeProvider     ← Light/dark/system
+                        └── App
+```
+
+### Role System
+
+| API Role | Frontend Role | Layout |
+|----------|---------------|--------|
+| JobSeeker | employee | EmployeeLayout (sidebar + outlet) |
+| Recruiter | hr | HRLayout (sidebar + outlet) |
+
+### Lazy Loading
+
+Dashboard pages (employee + HR) and layouts are `React.lazy()` loaded with `<Suspense fallback={<FullScreenLoader />}>`. Public pages are statically imported for fast initial load.
+
+---
+
+## Key Features
+
+- **Dual Role System** — Separate dashboards for job seekers and recruiters
+- **Profile Completion Wizard** — Multi-step onboarding with step guards preventing skipping
+- **AI-Powered Assessment** — Timed MCQ exams with anti-cheat (tab-switch detection), retry logic, and result review
+- **Video Interview** — Browser-based recording via MediaRecorder API
+- **Bilingual (EN/AR)** — Full i18next integration with RTL layout support
+- **Dark Mode** — Light/dark/system theme with CSS variables and Tailwind `dark` class
+- **Real-time Notifications** — 30-second polling interval for unread count
+- **Google OAuth** — Social login integration
+- **Responsive Design** — Mobile-friendly sidebars with drawer + focus trap
+- **Error Handling** — Centralized ASP.NET error extraction with i18n translation
+
+---
+
+## Configuration
+
+### Backend API URL
+
+The API base URL is configured in `src/api/axios.js`:
+
+```javascript
+baseURL: "https://jobintel-app.runasp.net/api"
+```
+
+Change this to your backend URL before building.
+
+### Google OAuth
+
+The Google Client ID is passed via `main.jsx` to `GoogleOAuthProvider`. Obtain yours from [Google Cloud Console](https://console.cloud.google.com/).
+
+### Environment Variables
+
+This project does not use `.env` files. All configuration is in source code for simplicity. For production, update the values in `src/api/axios.js` and `src/main.jsx`.

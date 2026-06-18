@@ -239,13 +239,16 @@ using (var scope = app.Services.CreateScope())
         var env = scope.ServiceProvider.GetRequiredService<IWebHostEnvironment>();
         await GeographicSeeder.SeedAsync(db, env, logger);
         await GeographicSeeder.SeedCitiesAsync(db, env, logger);
-        
+
         // Seed language data
         await LanguageSeeder.SeedAsync(db, logger, env.ContentRootPath);
         await FieldOfStudySeeder.SeedAsync(db, logger, env.ContentRootPath);
 
         // Seed skills data
         await SkillSeeder.SeedAsync(db, logger, env.ContentRootPath);
+
+        // Seed job seeker profiles
+        await JobSeekerDataSeeder.SeedAsync(db, env, logger);
 
     }
     catch (Exception ex)
